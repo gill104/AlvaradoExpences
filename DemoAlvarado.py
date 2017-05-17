@@ -15,6 +15,8 @@ import time
 import pickle
 #import GUI as gui
 #simple class that stores user information into a list format
+
+
 class ExpenceStorage:
     def __init__(self):
         self.__InvoiceNumber = 'N/A'

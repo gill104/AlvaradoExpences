@@ -82,10 +82,10 @@ def dateCheck(usrInput):
     daysPerMonth = {'1': 31, '3': 31, '4': 30, '5': 31, '6': 30, '7': 31, '8': 31, '9': 30, '10': 31, '11': 30,
                     '12': 31}
 
-    DateList = usrInput.split('-')
+    DateList = usrInput.split('/')
     for x in range(len(DateList)):
         if (not DateList[x].isdigit()):
-            print('Numbers(0-9) and \' - \' only')
+            print('Numbers(0-9) and \' / \' only')
             return False
 
     if (len(usrInput) == 10):
@@ -180,12 +180,12 @@ def totalTypeSpec(m, d):
     # *Both Date is Focused searches for the sales, can specify payment type
     elif (m.getMenuVendor() == 'N/A' and m.getMenuStartDate() != 'N/A' and m.getMenuEndDate() != 'N/A'):
         print('Both dateFocused')
-        startDate = time.strptime(m.getMenuStartDate(), '%m-%d-%Y')
-        endDate = time.strptime(m.getMenuEndDate(), '%m-%d-%Y')
+        startDate = time.strptime(m.getMenuStartDate(), '%m/%d/%Y')
+        endDate = time.strptime(m.getMenuEndDate(), '%m/%d/%Y')
 
         for k, v in tempDict.items():
             for x in range(len(v)):
-                dictTime = time.strptime(v[x][1], '%m-%d-%Y')
+                dictTime = time.strptime(v[x][1], '%m/%d/%Y')
                 if (m.getMenuPayType() == 'N/A' and dictTime >= startDate and dictTime <= endDate):
                     total += float(v[x][5])
                     tempList.append(v[x])
@@ -196,20 +196,20 @@ def totalTypeSpec(m, d):
     # *Both Dates are Focused and company as well searches for the sales, can specify payment type
     elif (m.getMenuVendor() != 'N/A' and m.getMenuStartDate() != 'N/A' and m.getMenuEndDate() != 'N/A'):
         print('Both dateFocused companyFocused')
-        startDate = time.strptime(m.getMenuStartDate(), '%m-%d-%Y')
-        endDate = time.strptime(m.getMenuEndDate(), '%m-%d-%Y')
+        startDate = time.strptime(m.getMenuStartDate(), '%m/%d/%Y')
+        endDate = time.strptime(m.getMenuEndDate(), '%m/%d/%Y')
 
         for k, v in tempDict.items():
             if (m.getMenuPayType() == 'N/A' and k.lower() == m.getMenuVendor()):
                 for x in range(len(v)):
-                    dictTime = time.strptime(v[x][1], '%m-%d-%Y')
+                    dictTime = time.strptime(v[x][1], '%m/%d/%Y')
                     if (dictTime >= startDate and dictTime <= endDate):
                         total += float(v[x][5])
                         tempList.append(v[x])
             else:
                 if (k.lower() == m.getMenuVendor()):
                     for x in range(len(v)):
-                        dictTime = time.strptime(v[x][1], '%m-%d-%Y')
+                        dictTime = time.strptime(v[x][1], '%m/%d/%Y')
                         if (v[x][4] == m.getMenuPayType() and dictTime >= startDate and dictTime <= endDate):
                             total += float(v[x][5])
                             tempList.append(v[x])
