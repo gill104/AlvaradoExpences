@@ -158,7 +158,8 @@ class MenuVariableHolder():
         self.__MenuVendor = 'N/A'
         self.__MenuStartDate = 'N/A'
         self.__MenuEndDate = 'N/A'
-        
+        self.__MenuPayType = 'N/A'
+
     def setMenuVendor(self, menuVendor):
         self.__MenuVendor = menuVendor
     def setMenuStartDate(self,menuStartDate):
@@ -172,21 +173,25 @@ class MenuVariableHolder():
             self.__MenuEndDate = menuEndDate
         else:
             self.__MenuEndDate = 'N/A'
-        
+    def setMenuPayType(self, menuPayType):
+        self.__MenuPayType = menuPayType
+
     def getMenuVendor(self):
         return self.__MenuVendor
     def getMenuStartDate(self):
         return self.__MenuStartDate
     def getMenuEndDate(self):
         return self.__MenuEndDate
-    
+    def getMenuPayType(self):
+        return self.__MenuPayType
+
 class DictionaryHash():
     def __init__(self):
         self.__d = {}
         self.__l = []
 
     def setDictionary(self, key, value):
-       
+
         print('key: ', key)
         print('Value: ', value, '\n')
         if(key not in self.__d.keys()):
@@ -198,7 +203,7 @@ class DictionaryHash():
             print('should be empty: ', self.__d)
             self.__d[key].append(value)
             print('newItem Added: ' , self.__d, '\n')'''
-            
+
         else:
             self.__d.setdefault(key, [])
             self.__d[key].append(value)
@@ -225,8 +230,12 @@ class DictionaryHash():
         except FileNotFoundError:
            file = open('Diction.data.pickle','a+')
            file.close()
-            
-            
+    def selectVendor(self):
+        vendorList = ['N/A']
+        for k,v in self.__d.items():
+            print("Keys: ", k)
+            vendorList.append(k)
+        return vendorList
 def loadMemory():
     d = DictionaryHash()
     d.loadDictionary()
