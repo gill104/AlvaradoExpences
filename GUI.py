@@ -2,8 +2,6 @@ import DemoAlvarado as da
 import DemoAlvaradoMethods as dam
 import tkinter as tk
 from tkinter import messagebox
-import sys
-
 
 class demoTK(tk.Frame):
     def __init__(self, master=None):

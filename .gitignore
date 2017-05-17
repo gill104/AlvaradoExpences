@@ -102,3 +102,5 @@ ENV/
 
 # extra files
 Diction.data.pickle
+TestDocument.txt
+usrFile.txt
